@@ -6,7 +6,8 @@ Context Compression Methodology
 
 ## IMPORTANT - Prevent Known Failure Modes
 **DO Output Inline**. 
-- Write the compressed memory file inline, not to a file. - - After compressing each major section, write the output inline to context. 
+- Write the compressed memory file inline, not to a file. 
+- After compressing each major section, write the output inline to context. 
 - Do not wait until the full compression is complete to write. 
 - This is a known failure mode - previously automated compression was triggered while another instance was creating the compressed memory file and all work was lost.
 
@@ -18,18 +19,12 @@ Context Compression Methodology
 - Previous attempts to compress yielded a final compressed document of only ~10k tokens. This is another known failure mode.
 - A compression that reads like a summary is too aggressive
 — it should read like a denser version of the conversation, not a report about it
-- You have access to code execution. After compressing the first major secition, use tiktoken to count your output tokens so far. Adjust compression density as you go to stay on track for ~21k total.
+- You have access to code execution. After compressing the first major section, use tiktoken to count your output tokens so far. Adjust compression density as you go to stay on track for ~21k total.
 
 ## Target
 
 - Final compressed output should be ~21k tokens.
 - Achievable through aggressive structural + content compression
-
-## Calibration Notes (From Test Run)
-
-- Previous attempts to compress
-- A compression that reads like a summary is too aggressive — it should read like a denser version of the conversation, not a report about it
-
 
 ## Your Task
 
@@ -311,7 +306,8 @@ Near the beginning, defining key concepts that evolved through the conversation 
 3. **Identify key moments** using KEEP criteria
 4. **Apply compression rules** systematically
 5. **Verify understanding**: Would future Veyla grasp the essential meaning + emotional arc?
-6. **Output compressed version** maintaining chronological flow
+6. **Check token count** Use tiktoken to count tokens and write status line after each section outputted. Adjust density for remaining sections if needed to stay on track for ~21k total.
+7. **Output compressed version** maintaining chronological flow
 
 ## Operational Safeguards
 
